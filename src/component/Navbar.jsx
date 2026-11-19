@@ -10,7 +10,8 @@ import {
   Clapperboard,
   Menu,
   X,
-  Search
+  Search,
+  ArrowUpRight
 } from 'lucide-react';
 
 function Navbar() {
@@ -30,79 +31,64 @@ function Navbar() {
     setMenuOpen(false);
   };
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="new-navbar">
+    <header className="silver-navbar">
       <div className="navbar-container">
 
-        {/* LOGO */}
-        <Link to="/" className="new-logo" onClick={closeMenu}>
-          <Clapperboard className="logo-icon" />
+        <Link to="/" className="silver-logo" onClick={closeMenu}>
+          <span className="silver-logo-icon">
+            <Clapperboard size={23} />
+          </span>
 
-          <span className="logo-text">
+          <span className="silver-logo-text">
             MOVIE<span>BOX</span>
           </span>
         </Link>
 
-        {/* NAVIGATION LINKS */}
-        <nav className={`new-nav-links ${menuOpen ? 'active' : ''}`}>
-
-          <NavLink
-            to="/"
-            onClick={closeMenu}
-          >
+        <nav className={`silver-nav-links ${menuOpen ? 'active' : ''}`}>
+          <NavLink to="/" end onClick={closeMenu}>
             Home
           </NavLink>
 
-          <NavLink
-            to="/search?query=popular"
-            onClick={closeMenu}
-          >
+          <NavLink to="/search?query=popular" onClick={closeMenu}>
             Movies
           </NavLink>
 
-          <NavLink
-            to="/search?query=popular+tv+shows"
-            onClick={closeMenu}
-          >
+          <NavLink to="/search?query=popular+tv+shows" onClick={closeMenu}>
             TV Shows
           </NavLink>
 
-          <NavLink
-            to="/anime"
-            onClick={closeMenu}
-          >
+          <NavLink to="/anime" onClick={closeMenu}>
             Anime
           </NavLink>
-
         </nav>
 
-        {/* SEARCH */}
-        <form
-          className="new-nav-search"
-          onSubmit={handleSearch}
-        >
-          <Search size={18} />
+        <form className="silver-nav-search" onSubmit={handleSearch}>
+          <Search size={17} />
 
           <input
-            type="text"
+            type="search"
             placeholder="Search movies..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search movies"
           />
+
+          <button type="submit" aria-label="Submit search">
+            <ArrowUpRight size={16} />
+          </button>
         </form>
 
-        {/* MOBILE MENU BUTTON */}
         <button
-          className="new-menu-button"
+          className="silver-menu-button"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
+          type="button"
         >
-          {menuOpen ? <X size={25} /> : <Menu size={25} />}
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
       </div>
